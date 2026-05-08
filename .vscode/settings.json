@@ -1,0 +1,26 @@
+{
+  "cortex-debug.armToolchainPath": "/Users/dkkang/zephyr-sdk-1.0.1/gnu/arm-zephyr-eabi/bin",
+  "cortex-debug.gdbPath": "/Users/dkkang/zephyr-sdk-1.0.1/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb",
+  "cortex-debug.openocdPath": "/Users/dkkang/zephyr-sdk-1.0.1/hosttools/usr/bin/openocd",
+  "cortex-debug.variableUseNaturalFormat": true,
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/blinky/compile_commands.json",
+  "C_Cpp.default.compilerPath": "/Users/dkkang/zephyr-sdk-1.0.1/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc",
+  "C_Cpp.default.intelliSenseMode": "linux-gcc-arm",
+  "C_Cpp.default.cStandard": "c11",
+  "files.associations": {
+    "*.overlay": "dts",
+    "*.dts": "dts",
+    "*.dtsi": "dts",
+    "*.conf": "kconfig",
+    "Kconfig*": "kconfig"
+  },
+  "kconfig.root": "${workspaceFolder}/zephyr/Kconfig",
+  "devicetree.bindings": [
+    "${workspaceFolder}/zephyr/dts/bindings"
+  ],
+  "terminal.integrated.env.osx": {
+    "ZEPHYR_BASE": "${workspaceFolder}/zephyr",
+    "ZEPHYR_SDK_INSTALL_DIR": "/Users/dkkang/zephyr-sdk-1.0.1",
+    "PATH": "${workspaceFolder}/.venv/bin:${env:PATH}"
+  }
+}

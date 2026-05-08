@@ -1,0 +1,23 @@
+# west-managed source trees (each is its own git repo, managed by `west update`)
+/zephyr/
+/modules/
+/bootloader/
+/tools/
+
+# west workspace metadata (regenerable via `west init -l zephyr`)
+/.west/
+
+# Python venv
+/.venv/
+
+# Build output
+/build/
+build/
+
+# IDE / OS junk
+.DS_Store
+*.swp
+*.swo
+
+# Claude memory (kept outside this repo)
+/.claude/

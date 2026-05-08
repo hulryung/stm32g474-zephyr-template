@@ -1,0 +1,109 @@
+{
+  "version": "2.0.0",
+  "options": {
+    "env": {
+      "ZEPHYR_BASE": "${workspaceFolder}/zephyr",
+      "ZEPHYR_SDK_INSTALL_DIR": "/Users/dkkang/zephyr-sdk-1.0.1",
+      "PATH": "${workspaceFolder}/.venv/bin:/opt/homebrew/bin:/usr/bin:/bin"
+    }
+  },
+  "inputs": [
+    {
+      "id": "appPath",
+      "type": "promptString",
+      "description": "샘플/앱 경로 (예: zephyr/samples/basic/blinky)",
+      "default": "zephyr/samples/basic/blinky"
+    },
+    {
+      "id": "buildName",
+      "type": "promptString",
+      "description": "빌드 디렉토리 이름 (build/<name>)",
+      "default": "blinky"
+    }
+  ],
+  "tasks": [
+    {
+      "label": "Zephyr: Build (blinky)",
+      "type": "shell",
+      "command": "west",
+      "args": [
+        "build", "-p", "auto",
+        "-b", "nucleo_g474re",
+        "${workspaceFolder}/zephyr/samples/basic/blinky",
+        "-d", "${workspaceFolder}/build/blinky"
+      ],
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Zephyr: Build (custom app)",
+      "type": "shell",
+      "command": "west",
+      "args": [
+        "build", "-p", "auto",
+        "-b", "nucleo_g474re",
+        "${workspaceFolder}/${input:appPath}",
+        "-d", "${workspaceFolder}/build/${input:buildName}"
+      ],
+      "group": "build",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Zephyr: Pristine build (blinky)",
+      "type": "shell",
+      "command": "west",
+      "args": [
+        "build", "-p", "always",
+        "-b", "nucleo_g474re",
+        "${workspaceFolder}/zephyr/samples/basic/blinky",
+        "-d", "${workspaceFolder}/build/blinky"
+      ],
+      "group": "build",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Zephyr: Debug build (blinky, -Og)",
+      "type": "shell",
+      "command": "west",
+      "args": [
+        "build", "-p", "always",
+        "-b", "nucleo_g474re",
+        "${workspaceFolder}/zephyr/samples/basic/blinky",
+        "-d", "${workspaceFolder}/build/blinky",
+        "--",
+        "-DEXTRA_CONF_FILE=${workspaceFolder}/debug.conf"
+      ],
+      "group": "build",
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Zephyr: Flash (blinky / openocd)",
+      "type": "shell",
+      "command": "west",
+      "args": [
+        "flash", "-r", "openocd",
+        "-d", "${workspaceFolder}/build/blinky"
+      ],
+      "dependsOn": "Zephyr: Build (blinky)",
+      "problemMatcher": []
+    },
+    {
+      "label": "Zephyr: Clean blinky",
+      "type": "shell",
+      "command": "rm",
+      "args": ["-rf", "${workspaceFolder}/build/blinky"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Zephyr: Open Serial (115200)",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-lc",
+        "PORT=$(ls /dev/cu.usbmodem* 2>/dev/null | head -1); if [ -z \"$PORT\" ]; then echo 'No /dev/cu.usbmodem* found'; exit 1; fi; echo \"Opening $PORT @ 115200 (Ctrl-A then K to quit screen)\"; exec screen \"$PORT\" 115200"
+      ],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
+    }
+  ]
+}
