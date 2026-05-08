@@ -1,10 +1,13 @@
-# Zephyr RTOS Dev Workspace — STM32G474RE Nucleo (macOS)
+# STM32G474RE Nucleo + Zephyr RTOS
 
-This repo holds **only the user-managed pieces** of a Zephyr west workspace
-(VSCode configs, `debug.conf` overlay, helper scripts). The Zephyr source tree,
-west modules, SDK, and Python venv are **not committed** — they are
-regenerable. This file is the canonical setup guide for both humans and AI
-agents (Claude Code, Cursor, etc.).
+Reproducible Zephyr west workspace for the STM32G474RE Nucleo-64. VSCode +
+Cortex-Debug + OpenOCD/ST-Link. macOS native toolchain.
+
+This repo is a **template**: it holds only the user-managed pieces of the
+workspace (VSCode configs, `debug.conf` overlay, helper scripts). The Zephyr
+source tree, west modules, SDK, and Python venv are **not committed** — they
+are regenerable from the steps below. This file is the canonical setup guide
+for both humans and AI agents (Claude Code, Cursor, etc.).
 
 ---
 
