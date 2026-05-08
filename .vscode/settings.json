@@ -3,7 +3,7 @@
   "cortex-debug.gdbPath": "/Users/dkkang/zephyr-sdk-1.0.1/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb",
   "cortex-debug.openocdPath": "/Users/dkkang/zephyr-sdk-1.0.1/hosttools/usr/bin/openocd",
   "cortex-debug.variableUseNaturalFormat": true,
-  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/blinky/compile_commands.json",
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/shell_monitor/compile_commands.json",
   "C_Cpp.default.compilerPath": "/Users/dkkang/zephyr-sdk-1.0.1/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc",
   "C_Cpp.default.intelliSenseMode": "linux-gcc-arm",
   "C_Cpp.default.cStandard": "c11",

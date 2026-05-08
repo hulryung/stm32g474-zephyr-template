@@ -166,10 +166,27 @@ Required for sane source-line debugging — see Gotcha B.
 
 | Path              | Purpose                                                       |
 |-------------------|---------------------------------------------------------------|
+| `apps/`           | User-developed Zephyr applications (see `apps/README.md`)     |
 | `.vscode/`        | tasks, launch, settings, extensions for nucleo_g474re         |
 | `debug.conf`      | Build overlay for `-Og` + thread info (debugging)             |
 | `zephyr-env.sh`   | Sources venv + sets `ZEPHYR_BASE`, `ZEPHYR_SDK_INSTALL_DIR`   |
 | `.gitignore`      | Excludes west trees, venv, build, SDK                         |
+
+### Application layout
+
+User applications live under `apps/<name>/`, completely separate from the
+upstream Zephyr tree (`zephyr/`, `modules/`, `bootloader/`, `tools/`) which
+is treated as a read-only dependency managed by `west`. This keeps user code
+in version control while letting `west update` freely rewrite the dependency
+trees.
+
+Bundled apps:
+- **`apps/shell_monitor/`** — UART shell on LPUART1 (ST-Link VCP) with
+  built-in monitoring commands (`kernel threads`, `device list`, `log`, …)
+  plus a custom `sys info|uptime|led` command tree. LD2 1 Hz heartbeat.
+
+To add a new app, copy `apps/shell_monitor/` and rename. See
+`apps/README.md` for the convention.
 
 ### Not in repo (regenerable)
 
